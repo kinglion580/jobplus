@@ -1,15 +1,13 @@
-from flask import Flask, render_template
-
-app = Flask(__name__)
+from flask import Flask
 
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+def register_blueprints(app):
+    from .handlers import front
+    app.register_blueprint(front)
 
 
 def create_app(config):
+    app = Flask(__name__)
     app.config.from_object(config)
+    register_blueprints(app)
     return app
-
-
