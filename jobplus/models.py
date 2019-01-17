@@ -69,6 +69,3 @@ class Company(Base):
 
     def __repr__(self):
         return '<Company {}>'.format(self.name)
-
-
-    
