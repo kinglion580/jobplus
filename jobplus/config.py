@@ -5,3 +5,4 @@ class BaseConfig(object):
 
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
+    SQLALCHEMY_DATABASE_URL = 'mysql+mysqldb://root:kinglion@localhost:3306/jobplus?charset=utf8'

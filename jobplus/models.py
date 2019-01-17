@@ -13,7 +13,7 @@ class Base(db.Model):
 
 
 class User(Base, UserMixin):
-    __table__ = 'user'
+    __tablename__ = 'user'
     
     ROLE_USER = 10
     ROLE_COMPANY = 20
@@ -49,7 +49,7 @@ class User(Base, UserMixin):
 
 
 class Company(Base):
-    __table__ = 'company'
+    __tablename__ = 'company'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, index=True, nullable=True)
@@ -65,7 +65,7 @@ class Company(Base):
     team_introduction = db.Column(db.String(256))
     welfares = db.Column(db.String(256))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='SET NULL'))
-    user = db.relationship('User', userlist=False, backref=db.backref('company', userlist=False))
+    user = db.relationship('User', uselist=False, backref=db.backref('company', uselist=False))
 
     def __repr__(self):
-        return '<Company {}>'.format(self.name)
+        return '<Company: {}>'.format(self.name)
