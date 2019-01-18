@@ -5,8 +5,8 @@ from jobplus.models import db, User
 
 
 class LoginForm(FlaskForm):
-    email = StringField('邮箱', validators=[DataRequired(), Email()])
-    password = PasswordField('密码', validators=[DataRequired(), Length(6, 24)])
+    email = StringField('邮箱', validators=[DataRequired(), Email(message='邮箱格式不对')])
+    password = PasswordField('密码', validators=[DataRequired(), Length(6, 24, message='密码长度要在 6～24 个字符之间')])
     remember_me = BooleanField('记住我')
     submit = SubmitField('提交')
 
@@ -22,9 +22,9 @@ class LoginForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     username = StringField('用户名', validators=[DataRequired()])
-    email = StringField('邮箱', validators=[DataRequired(), Email()])
-    password = PasswordField('密码', validators=[DataRequired(), Length(6, 24)])
-    repeat_password = PasswordField('重复密码', validators=[DataRequired(), Length(6, 24)])
+    email = StringField('邮箱', validators=[DataRequired(), Email(message='邮箱格式不对')])
+    password = PasswordField('密码', validators=[DataRequired(), Length(6, 24, message='密码长度要在 6～24 个字符之间')])
+    repeat_password = PasswordField('重复密码', validators=[DataRequired(), Length(6, 24, message='密码长度要在 6～24 个字符之间')])
     submit = SubmitField('提交')
 
     def validate_username(self, field):
