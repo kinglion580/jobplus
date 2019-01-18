@@ -10,6 +10,15 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('记住我')
     submit = SubmitField('提交')
 
+    def validate_email(self, field):
+        if field.data and not User.query.filter_by(email=field.data).first():
+            raise ValidationError('该邮箱为注册')
+
+    def validate_password(self, field):
+        user = User.query.filter_by(email=self.email.data).first()
+        if user and not user.check_password(field.data):
+            raise ValidationError('密码错误')
+
 
 class RegisterForm(FlaskForm):
     username = StringField('用户名', validators=[DataRequired()])
