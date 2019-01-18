@@ -43,7 +43,7 @@
                             <span id="username">{{ current_user.username }}</span><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">我的主页</a></li>
+                            <li><a href="{{ url_for('user.update_profile') }}">我的主页</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ url_for('front.logout') }}">退出登录</a></li>
                         </ul>

@@ -28,7 +28,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         login_user(user, form.remember_me.data)
         flash('登录成功', 'success')
-        return redirect(url_for('.index'))
+        return redirect(url_for('user.profile', user_id=user.id))
     return render_template('login.html', form=form)
 
 

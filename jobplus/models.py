@@ -24,6 +24,10 @@ class User(Base, UserMixin):
     email = db.Column(db.String(64), unique=True, index=True, nullable=False)
     _password = db.Column('password', db.String(256), nullable=False)
     role = db.Column(db.SmallInteger, default=ROLE_USER)
+    real_name = db.Column(db.String(20))
+    phone = db.Column(db.String(11))
+    work_years = db.Column(db.SmallInteger)
+    resume_url = db.Column(db.String(64))
 
     def __repr__(self):
         return '<User:{}>'.format(self.username)

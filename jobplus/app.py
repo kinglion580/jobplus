@@ -18,8 +18,9 @@ def register_extensions(app):
 
 
 def register_blueprints(app):
-    from .handlers import front
+    from .handlers import front, user
     app.register_blueprint(front)
+    app.register_blueprint(user)
 
 
 def create_app(config):

@@ -40,3 +40,21 @@ class RegisterForm(FlaskForm):
         db.session.add(user)
         db.session.commit()
         return user
+
+
+class UserProfileForm(FlaskForm):
+    username = StringField('用户名', [DataRequired()])
+    real_name = StringField('姓名')
+    email = StringField('邮箱', validators=[DataRequired(), Email(message='邮箱格式不对')])
+    phone = StringField('手机号')
+    work_years = IntegerField('工作年限')
+    submit = SubmitField('提交')
+
+    def validate_phone(self, field):
+        if len(field.data) != 11:
+            raise ValidationError('请输入有效手机号')
+
+    def update_profile(self, user):
+        self.populate_obj(user)
+        db.session.add(user)
+        db.session.commit()
