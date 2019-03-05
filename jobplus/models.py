@@ -29,6 +29,10 @@ class User(Base, UserMixin):
     work_years = db.Column(db.SmallInteger)
     resume_url = db.Column(db.String(64))
 
+    detail = db.relationship('Company', uselist=False)
+
+    is_disable = db.Column(db.Boolean, default=False)
+
     def __repr__(self):
         return '<User:{}>'.format(self.username)
 
@@ -56,11 +60,9 @@ class Company(Base):
     __tablename__ = 'company'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), unique=True, index=True, nullable=True)
     logo = db.Column(db.String(64), nullable=False)
     site = db.Column(db.String(64), nullable=False)
     contact = db.Column(db.String(24), nullable=False)
-    email = db.Column(db.String(24), nullable=False)
     location = db.Column(db.String(24), nullable=False)
     description = db.Column(db.String(100))
     about = db.Column(db.String(1024))
